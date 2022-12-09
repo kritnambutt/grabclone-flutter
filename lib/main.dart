@@ -1,4 +1,6 @@
 import 'package:english_words/english_words.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -12,14 +14,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Startup Name Generator',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,
             foregroundColor: Colors.black,
           ),
         ),
-        home: const _WidgetBottomNavigationBar());
+        // home: const _WidgetBottomNavigationBar()
+        home: const SplashScreen()
+        // home: const HomeScreen()
+        );
   }
 }
 
@@ -64,6 +69,57 @@ class WidgetBottomNavigationBarState extends State<_WidgetBottomNavigationBar> {
         ],
       ),
     );
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(Duration(seconds: 5)).then((value) => {
+          Navigator.of(context).pushReplacement(
+              CupertinoPageRoute(builder: (ctx) => const HomeScreen()))
+        });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SizedBox(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Image(
+                  image: AssetImage("assets/images/logo/logo-paloit.png"),
+                  width: 200,
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                SpinKitFadingCircle(
+                  color: Colors.orange,
+                  size: 50.0,
+                )
+              ],
+            )));
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(body: _WidgetBottomNavigationBar());
   }
 }
 
