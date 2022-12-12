@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
           textTheme:
               Theme.of(context).textTheme.apply(displayColor: kTextColor),
           appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black,
-          ),
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+              elevation: 0),
         ),
         home: const SplashScreen());
   }

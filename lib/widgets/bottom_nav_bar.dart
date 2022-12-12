@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:my_app/constants.dart';
+import 'package:my_app/screens/setting_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
@@ -34,7 +35,11 @@ class BottomNavBar extends StatelessWidget {
           BottomNavItem(
             svgSrc: 'assets/icons/settings.svg',
             title: 'Settings',
-            press: () {},
+            press: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const SettingScreen();
+              }));
+            },
             isActive: currentActive == 'settings' ? true : false,
           ),
         ],
