@@ -42,51 +42,6 @@ class SettingScreen extends StatelessWidget {
                     ))),
           ],
         ),
-        // appBar: PreferredSize(
-        //   preferredSize: const Size.fromHeight(50),
-        //   child: Container(
-        //     decoration: BoxDecoration(
-        //         color: Colors.white,
-        //         borderRadius: BorderRadius.circular(13),
-        //         // ignore: prefer_const_literals_to_create_immutables
-        //         boxShadow: [
-        //           const BoxShadow(
-        //               offset: Offset(0, 17),
-        //               blurRadius: 23,
-        //               spreadRadius: -13,
-        //               color: kShadowColor)
-        //         ]),
-        //     child: Padding(
-        //       padding: EdgeInsets.only(top: statusBarHeight + 15),
-        //       child: Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //         children: <Widget>[
-        //           const Text('Back'),
-        //           Text(
-        //             'Account Settings',
-        //             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-        //                 fontWeight: FontWeight.w700,
-        //                 fontSize: 18,
-        //                 color: Colors.grey[900]),
-        //           ),
-        //           const Text('Actions'),
-        //         ],
-        //       ),
-        //     ),
-        //   ),
-        //   // title: const Text('Account Settings'),
-        //   // actions: [
-        //   //   // IconButton(
-        //   //   //   icon: const Icon(Icons.question_answer_outlined),
-        //   //   //   onPressed: () {},
-        //   //   //   tooltip: 'Saved Suggestions',
-        //   //   // ),
-        //   //   Badge(
-        //   //     badgeContent: const Text('3'),
-        //   //     child: const Icon(Icons.question_answer_outlined),
-        //   //   )
-        //   // ],
-        // ),
         body: Stack(children: <Widget>[
           Stack(children: <Widget>[
             Padding(
