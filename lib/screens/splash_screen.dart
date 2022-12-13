@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:my_app/screens/home_screen.dart';
+// import 'package:my_app/screens/home_screen.dart';
 import 'dart:async';
+
+import 'package:my_app/screens/onboarding/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,9 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 5)).then((value) => {
+    Future.delayed(const Duration(seconds: 5)).then((value) => {
           Navigator.of(context).pushReplacement(
-              CupertinoPageRoute(builder: (ctx) => const HomeScreen()))
+              CupertinoPageRoute(builder: (ctx) => const OnBoardingScreen()))
         });
   }
 
