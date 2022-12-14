@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/screens/home_screen.dart';
+import 'package:my_app/screens/auth/landing_auth.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -77,7 +77,7 @@ class _OnboardingScreenState extends State<OnBoardingScreen> {
                               onPressed: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return const HomeScreen();
+                                  return const LandingAuthScreen();
                                 }));
                               },
                               child: Text('Skip',
@@ -145,7 +145,7 @@ class GetStartedButton extends StatelessWidget {
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return const HomeScreen();
+                        return const LandingAuthScreen();
                       }));
                     },
                     child: Padding(

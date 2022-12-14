@@ -18,8 +18,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Cairo',
           scaffoldBackgroundColor: kBackgroundColor,
-          textTheme:
-              Theme.of(context).textTheme.apply(displayColor: kTextColor),
+          textTheme: Theme.of(context).textTheme.apply(
+                displayColor: kTextColor,
+              ),
           appBarTheme: const AppBarTheme(
               backgroundColor: Colors.white,
               foregroundColor: Colors.black,
