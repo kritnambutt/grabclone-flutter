@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/constants.dart';
+import 'package:my_app/screens/auth/login_screen.dart';
 
 class LandingAuthScreen extends StatelessWidget {
   const LandingAuthScreen({super.key});
@@ -84,7 +85,12 @@ class ButtonLogin extends StatelessWidget {
             child: Material(
                 color: Colors.transparent,
                 child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const LoginScreen();
+                      }));
+                    },
                     child: Padding(
                         padding: const EdgeInsets.all(15),
                         child: SizedBox(
