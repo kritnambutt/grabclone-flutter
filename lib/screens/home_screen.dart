@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:my_app/constants.dart';
+import 'package:my_app/models/Shop.dart';
 import 'package:my_app/models/category.dart';
 import 'package:my_app/widgets/bottom_nav_bar.dart';
 
@@ -28,25 +29,187 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: const BottomNavBar(),
-        body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const <Widget>[
-              HeaderContent(),
-              SizedBox(
-                height: 15,
-              ),
-              CategoryServices(),
-              SizedBox(
-                height: 15,
-              ),
-              SummaryContent(),
-              AdvertiserCard(
-                headerTitle: 'สั่งเลย เพียง 199.-',
-                image: 'assets/images/illustrations/advertise.png',
-                title: "ความค้มอีกขั้น กับ GrabUnlimited แพ็กเกจ",
-                description: 'สนับสนุนโดย GrabFood',
-              )
-            ]));
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const <Widget>[
+                HeaderContent(),
+                SizedBox(
+                  height: 15,
+                ),
+                CategoryServices(),
+                SizedBox(
+                  height: 15,
+                ),
+                SummaryContent(),
+                AdvertiserCard(
+                  headerTitle: 'สั่งเลย เพียง 199.-',
+                  image: 'assets/images/illustrations/advertise.png',
+                  title: "ความค้มอีกขั้น กับ GrabUnlimited แพ็กเกจ",
+                  description: 'สนับสนุนโดย GrabFood',
+                ),
+                LastOrderFoodContent(),
+              ]),
+        ));
+  }
+}
+
+class LastOrderFoodContent extends StatelessWidget {
+  const LastOrderFoodContent({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: () {},
+        child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 25, 20, 0),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        'ร้านที่คุณเคยสั่ง',
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                            fontFamily: 'Prompt',
+                            color: const Color(0xFF3D3D3D)),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      SvgPicture.asset(
+                        'assets/icons/right-arrow-fill.svg',
+                        width: 20,
+                        height: 20,
+                        color: const Color(0x66808080),
+                        fit: BoxFit.scaleDown,
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const RecentShopFoodContent(),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                ])));
+  }
+}
+
+class RecentShopFoodContent extends StatelessWidget {
+  const RecentShopFoodContent({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: Row(
+                children: List.generate(
+                    recent_shop_food.length,
+                    (index) => ShopCard(
+                          imageSrc: recent_shop_food[index].imageSrc,
+                          shopName: recent_shop_food[index].shopName,
+                          distance: recent_shop_food[index].distance,
+                          press: recent_shop_food[index].press,
+                        )))));
+  }
+}
+
+class ShopCard extends StatelessWidget {
+  const ShopCard({
+    Key? key,
+    required this.imageSrc,
+    required this.shopName,
+    required this.distance,
+    this.promotion,
+    required this.press,
+  }) : super(key: key);
+
+  final String imageSrc;
+  final String shopName;
+  final String distance;
+  final promotion;
+  final Function press;
+
+  void _press() {
+    press();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.only(right: 10),
+        child: GestureDetector(
+          onTap: _press,
+          child: SizedBox(
+            width: 100,
+            height: 220,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      imageSrc,
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.scaleDown,
+                    )),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(shopName,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontFamily: 'Prompt',
+                        height: 1.50,
+                        color: const Color(
+                          0xFF1C1C1C,
+                        ),
+                        fontWeight: FontWeight.w400)),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text('$distance km',
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontFamily: 'Prompt',
+                        height: 1.25,
+                        color: const Color(0xFF676767).withOpacity(0.8))),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  height: 20,
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFFFF4EA),
+                      borderRadius: BorderRadius.circular(3)),
+                  child: Text(
+                    'ลดพิเศษกับเมนูที่ร่วมรายการ',
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontFamily: 'Prompt',
+                        color: const Color(
+                          0xFF1C1C1C,
+                        ),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }
 
@@ -69,7 +232,7 @@ class AdvertiserCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 25, 20, 25),
+        padding: const EdgeInsets.fromLTRB(20, 25, 20, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
