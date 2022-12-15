@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:my_app/components/horizontal_line.dart';
+import 'package:my_app/screens/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -9,6 +10,12 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     double statusBarHeight = MediaQuery.of(context).padding.top;
+
+    void _goToHomeScreen() {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const HomeScreen();
+      }));
+    }
 
     return Scaffold(
       body: Container(
@@ -68,7 +75,7 @@ class LoginScreen extends StatelessWidget {
                   ButtonRoundWithIcon(
                     textButton: 'ดำเนินการต่อด้วย Facebook',
                     imageSrc: 'assets/icons/facebook.svg',
-                    press: () {},
+                    press: _goToHomeScreen,
                   ),
                   const SizedBox(
                     height: 15,
@@ -76,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                   ButtonRoundWithIcon(
                     textButton: 'ดำเนินการต่อด้วย Google',
                     imageSrc: 'assets/icons/google.svg',
-                    press: () {},
+                    press: _goToHomeScreen,
                   ),
                   const SizedBox(
                     height: 15,
@@ -84,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                   ButtonRoundWithIcon(
                     textButton: 'ดำเนินการต่อด้วย Apple',
                     imageSrc: 'assets/icons/apple-logo.svg',
-                    press: () {},
+                    press: _goToHomeScreen,
                   ),
                   const SizedBox(
                     height: 30,
@@ -115,7 +122,7 @@ class LoginScreen extends StatelessWidget {
                   ButtonRoundWithIcon(
                     textButton: 'ดำเนินการต่อด้วยเบอร์โทรศัพท์',
                     imageSrc: 'assets/icons/phone-call.svg',
-                    press: () {},
+                    press: _goToHomeScreen,
                   ),
                 ]),
               )
