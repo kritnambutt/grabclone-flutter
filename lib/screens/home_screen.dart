@@ -96,6 +96,8 @@ class LastOrderFoodContent extends StatelessWidget {
                                             recent_shop_food[index].shopName,
                                         distance:
                                             recent_shop_food[index].distance,
+                                        promotion:
+                                            recent_shop_food[index].promotion,
                                         press: recent_shop_food[index].press,
                                       ))))),
                   const SizedBox(
@@ -118,11 +120,37 @@ class ShopCard extends StatelessWidget {
   final String imageSrc;
   final String shopName;
   final String distance;
+  // ignore: prefer_typing_uninitialized_variables
   final promotion;
   final Function press;
 
   void _press() {
     press();
+  }
+
+  Widget showPromotionWidget(BuildContext context) {
+    if (promotion != null) {
+      return Container(
+        height: 20,
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+            color: const Color(0xFFFFF4EA),
+            borderRadius: BorderRadius.circular(3)),
+        child: Text(
+          promotion,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              fontFamily: 'Prompt',
+              color: const Color(
+                0xFF1C1C1C,
+              ),
+              fontSize: 12,
+              fontWeight: FontWeight.w400),
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 
   @override
@@ -136,7 +164,7 @@ class ShopCard extends StatelessWidget {
             height: 220,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.asset(
@@ -170,24 +198,7 @@ class ShopCard extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                Container(
-                  height: 20,
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                      color: const Color(0xFFFFF4EA),
-                      borderRadius: BorderRadius.circular(3)),
-                  child: Text(
-                    'ลดพิเศษกับเมนูที่ร่วมรายการ',
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontFamily: 'Prompt',
-                        color: const Color(
-                          0xFF1C1C1C,
-                        ),
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400),
-                  ),
-                )
+                showPromotionWidget(context)
               ],
             ),
           ),
