@@ -70,6 +70,8 @@ flutter:
     - assets/images/logo/
     - assets/images/illustrations/
     - assets/images/illustrations/shop/
+    - assets/images/illustrations/advertise/
+    - assets/images/illustrations/menu-match/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
