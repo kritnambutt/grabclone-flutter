@@ -5,11 +5,13 @@ import 'package:my_app/widgets/bottom_nav_bar.dart';
 
 import 'components/advertise_card.dart';
 import 'widgets/category_services.dart';
+import 'widgets/deal_food.dart';
 import 'widgets/food_menu_match.dart';
 import 'widgets/food_order_morning.dart';
 import 'widgets/foodshop_may_like.dart';
 import 'widgets/header.dart';
 import 'widgets/lastorder_food.dart';
+import 'widgets/promotion_may_interest.dart';
 import 'widgets/summary_content.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -65,7 +67,9 @@ class HomeScreen extends StatelessWidget {
                 ),
                 FoodShopMayBeYouLikeContent(),
                 FoodOrderMorningContent(),
-                FoodMenuMatchWithYouContent()
+                FoodMenuMatchWithYouContent(),
+                DealFoodContent(),
+                PromotionMayLikeContent(),
               ]),
         ));
   }
