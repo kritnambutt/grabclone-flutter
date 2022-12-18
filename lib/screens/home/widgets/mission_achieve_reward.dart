@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/Deal.dart';
-import '../components/deal_card.dart';
+import '../../../models/MissionReward.dart';
+import '../components/mission_achieve_reward_card.dart';
 
-class DealFoodContent extends StatelessWidget {
-  const DealFoodContent({
+class MissionAchieveRewardContent extends StatelessWidget {
+  const MissionAchieveRewardContent({
     Key? key,
   }) : super(key: key);
 
@@ -22,7 +22,7 @@ class DealFoodContent extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Text(
-                      'รวมดีลสุดคุ้มจาก GrabFood',
+                      'ทำภารกิจพิชิตรีวอร์ด',
                       style: Theme.of(context).textTheme.headline6?.copyWith(
                           fontFamily: 'Prompt', color: const Color(0xFF3D3D3D)),
                     ),
@@ -37,15 +37,14 @@ class DealFoodContent extends StatelessWidget {
                   child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
-                          children: List.generate(deal_example.length, (index) {
-                        var dataIndex = deal_example[index];
+                          children: List.generate(
+                              mission_achieve_reward_data.length, (index) {
+                        var dataIndex = mission_achieve_reward_data[index];
 
-                        return DealCard(
-                          widthCard: widthCard,
+                        return MissionAchieveRewardCard(
                           imageSrc: dataIndex.imageSrc,
                           title: dataIndex.title,
-                          description: dataIndex.description,
-                          promotion: dataIndex.promotion,
+                          dueDate: dataIndex.dueDate,
                           press: dataIndex.press,
                         );
                       })))),

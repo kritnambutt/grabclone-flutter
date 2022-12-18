@@ -73,6 +73,7 @@ flutter:
     - assets/images/illustrations/advertise/
     - assets/images/illustrations/menu-match/
     - assets/images/illustrations/deal-promotion/
+    - assets/images/illustrations/mission-achieve-reward/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -11,6 +11,7 @@ import 'widgets/food_order_morning.dart';
 import 'widgets/foodshop_may_like.dart';
 import 'widgets/header.dart';
 import 'widgets/lastorder_food.dart';
+import 'widgets/mission_achieve_reward.dart';
 import 'widgets/promotion_may_interest.dart';
 import 'widgets/summary_content.dart';
 
@@ -69,7 +70,8 @@ class HomeScreen extends StatelessWidget {
                 FoodOrderMorningContent(),
                 FoodMenuMatchWithYouContent(),
                 DealFoodContent(),
-                PromotionMayLikeContent(),
+                // PromotionMayLikeContent(),
+                MissionAchieveRewardContent(),
               ]),
         ));
   }

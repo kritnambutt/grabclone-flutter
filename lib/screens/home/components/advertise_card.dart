@@ -20,7 +20,7 @@ class AdvertiserCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 25),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
