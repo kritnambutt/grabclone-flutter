@@ -5,6 +5,7 @@ import 'package:my_app/widgets/bottom_nav_bar.dart';
 
 import 'components/advertise_card.dart';
 import 'widgets/category_services.dart';
+import 'widgets/celebrate_tenyears.dart';
 import 'widgets/deal_food.dart';
 import 'widgets/food_menu_match.dart';
 import 'widgets/food_order_morning.dart';
@@ -74,6 +75,7 @@ class HomeScreen extends StatelessWidget {
                 PromotionMayLikeContent(),
                 MissionAchieveRewardContent(),
                 OtherServicesContent(),
+                CelebrateTenYearsContents(),
               ]),
         ));
   }
