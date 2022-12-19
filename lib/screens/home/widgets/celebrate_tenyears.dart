@@ -10,7 +10,7 @@ class CelebrateTenYearsContents extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final widthCard = (size.width - (20 * 2) - 10) / 2;
-    final double itemHeight = widthCard + 50;
+    final double itemHeight = widthCard + 80;
     final double itemWidth = widthCard;
 
     return GestureDetector(
@@ -113,6 +113,7 @@ class CelebrateTenYearsCard extends StatelessWidget {
               ),
               Text(
                 title,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyText1?.copyWith(
                     fontFamily: 'Prompt',
