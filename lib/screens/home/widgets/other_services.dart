@@ -35,6 +35,7 @@ class OtherServicesContent extends StatelessWidget {
                 child: Container(
                   height: widthCard,
                   child: GridView.count(
+                      physics: ScrollPhysics(),
                       crossAxisCount: 3,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
