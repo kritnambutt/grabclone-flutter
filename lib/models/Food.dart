@@ -3,7 +3,7 @@ class MenuFoodShop {
   final double price;
   final Function press;
   // ignore: prefer_typing_uninitialized_variables
-  final promotion;
+  final String? promotion;
 
   MenuFoodShop(
       {required this.imageSrc,

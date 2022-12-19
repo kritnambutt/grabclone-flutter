@@ -2,7 +2,7 @@ class DealData {
   final String imageSrc, title, description;
   final Function press;
   // ignore: prefer_typing_uninitialized_variables
-  final promotion;
+  final String? promotion;
 
   DealData({
     required this.imageSrc,

@@ -2,7 +2,7 @@ class ShopFood {
   final String imageSrc, shopName, distance;
   final Function press;
   // ignore: prefer_typing_uninitialized_variables
-  final promotion;
+  final String? promotion;
 
   ShopFood(
       {required this.imageSrc,
