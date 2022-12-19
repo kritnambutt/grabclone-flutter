@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                 FoodOrderMorningContent(),
                 FoodMenuMatchWithYouContent(),
                 DealFoodContent(),
-                // PromotionMayLikeContent(),
+                PromotionMayLikeContent(),
                 MissionAchieveRewardContent(),
                 OtherServicesContent(),
               ]),
