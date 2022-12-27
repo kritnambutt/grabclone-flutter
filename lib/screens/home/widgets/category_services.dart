@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/models/Category.dart';
+import 'package:grabclone/models/Category.dart';
 
 import '../components/category_service_card.dart';
 

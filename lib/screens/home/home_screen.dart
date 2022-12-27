@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:my_app/widgets/bottom_nav_bar.dart';
+import 'package:grabclone/widgets/bottom_nav_bar.dart';
 
 import 'components/advertise_card.dart';
 import 'widgets/category_services.dart';

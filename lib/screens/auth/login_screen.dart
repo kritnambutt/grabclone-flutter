@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:my_app/components/horizontal_line.dart';
-import 'package:my_app/screens/home/home_screen.dart';
+import 'package:grabclone/components/horizontal_line.dart';
+import 'package:grabclone/screens/home/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

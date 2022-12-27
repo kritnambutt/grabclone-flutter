@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/constants.dart';
+import 'package:grabclone/constants.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CategoryCard extends StatelessWidget {

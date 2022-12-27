@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:badges/badges.dart';
-import 'package:my_app/constants.dart';
+import 'package:grabclone/constants.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});

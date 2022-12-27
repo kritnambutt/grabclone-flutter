@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:my_app/models/Promotion.dart';
+import 'package:grabclone/models/Promotion.dart';
 
 class PromotionMayLikeContent extends StatelessWidget {
   const PromotionMayLikeContent({

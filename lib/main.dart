@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/screens/splash_screen.dart';
+import 'package:grabclone/screens/splash_screen.dart';
 
 // import widgets
-import 'package:my_app/constants.dart';
+import 'package:grabclone/constants.dart';
 
 void main() {
   runApp(const MyApp());

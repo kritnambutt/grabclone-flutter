@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/constants.dart';
-import 'package:my_app/screens/auth/login_screen.dart';
+import 'package:grabclone/constants.dart';
+import 'package:grabclone/screens/auth/login_screen.dart';
 
 class LandingAuthScreen extends StatelessWidget {
   const LandingAuthScreen({super.key});

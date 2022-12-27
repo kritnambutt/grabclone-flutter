@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-// import 'package:my_app/screens/home_screen.dart';
 import 'dart:async';
 
-import 'package:my_app/screens/onboarding/onboarding_screen.dart';
+import 'package:grabclone/screens/onboarding/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

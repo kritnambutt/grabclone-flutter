@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:my_app/constants.dart';
-import 'package:my_app/widgets/bottom_nav_bar.dart';
-import 'package:my_app/widgets/search_bar.dart';
+import 'package:grabclone/constants.dart';
+import 'package:grabclone/widgets/bottom_nav_bar.dart';
+import 'package:grabclone/widgets/search_bar.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:my_app/constants.dart';
-import 'package:my_app/screens/setting_screen.dart';
+import 'package:grabclone/constants.dart';
+import 'package:grabclone/screens/setting_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({

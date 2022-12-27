@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/models/CelebrateTenYears.dart';
+import 'package:grabclone/models/CelebrateTenYears.dart';
 
 class CelebrateTenYearsContents extends StatelessWidget {
   const CelebrateTenYearsContents({
