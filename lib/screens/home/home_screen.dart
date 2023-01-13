@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:grabclone/cubit/global_cubit.dart';
 import 'package:grabclone/widgets/bottom_nav_bar.dart';
 
 import 'components/advertise_card.dart';
@@ -18,8 +20,21 @@ import 'widgets/other_services.dart';
 import 'widgets/promotion_may_interest.dart';
 import 'widgets/summary_content.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreen();
+}
+
+class _HomeScreen extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      context.read<GlobalCubit>()..loadCurrentLocation();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

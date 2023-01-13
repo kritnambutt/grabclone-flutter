@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:grabclone/cubit/global_cubit.dart';
 import 'package:grabclone/screens/splash_screen.dart';
-
-// import widgets
 import 'package:grabclone/constants.dart';
+import 'package:get_it/get_it.dart';
 
-void main() {
+import 'services/location_service.dart';
+
+GetIt ourGetIt = GetIt.instance;
+
+setupServiceLocation() {
+  ourGetIt.registerLazySingleton<LocationServiceClass>(() => LocationService());
+}
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
+  setupServiceLocation();
+
   runApp(const MyApp());
 }
 
@@ -13,20 +27,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: 'Cairo',
-          scaffoldBackgroundColor: kBackgroundColor,
-          textTheme: Theme.of(context).textTheme.apply(
-                displayColor: kTextColor,
-              ),
-          appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.black,
-              elevation: 0),
-        ),
-        home: const SplashScreen());
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (_) => GlobalCubit())],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            fontFamily: 'Cairo',
+            scaffoldBackgroundColor: kBackgroundColor,
+            textTheme: Theme.of(context).textTheme.apply(
+                  displayColor: kTextColor,
+                ),
+            appBarTheme: const AppBarTheme(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+                elevation: 0),
+          ),
+          home: const SplashScreen()),
+    );
   }
 }
 

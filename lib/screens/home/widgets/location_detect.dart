@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grabclone/cubit/global_cubit.dart';
+import 'package:grabclone/cubit/global_state.dart';
 
 class LocationDetect extends StatefulWidget {
   const LocationDetect({super.key});
@@ -10,73 +11,19 @@ class LocationDetect extends StatefulWidget {
 }
 
 class _LocationDetect extends State<LocationDetect> {
-  String? _currentAddress;
-  Position? _currentPosition;
-
-  Future<bool> _handleLocationPermission() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return false;
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return false;
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      return false;
-    }
-    return true;
-  }
-
-  Future<void> _getCurrentPosition() async {
-    final hasPermission = await _handleLocationPermission();
-    if (!hasPermission) return;
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-        .then((Position position) {
-      setState(() => _currentPosition = position);
-      _getAddressFromLatLng(_currentPosition!);
-    }).catchError((e) {
-      debugPrint(e);
-    });
-  }
-
-  Future<void> _getAddressFromLatLng(Position position) async {
-    await placemarkFromCoordinates(
-            _currentPosition!.latitude, _currentPosition!.longitude)
-        .then((List<Placemark> placemarks) {
-      Placemark place = placemarks[0];
-      setState(() {
-        _currentAddress =
-            '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
-      });
-    }).catchError((e) {
-      debugPrint(e);
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _getCurrentPosition();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text('LAT: ${_currentPosition?.latitude ?? ""}'),
-          Text('LNG: ${_currentPosition?.longitude ?? ""}'),
-          Text('ADDRESS: ${_currentAddress ?? ""}'),
-        ],
-      ),
-    );
+    return BlocBuilder<GlobalCubit, GlobalState>(builder: (context, state) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('LAT: ${state.currentUserPosition?.latitude ?? ""}'),
+            Text('LNG: ${state.currentUserPosition?.longitude ?? ""}'),
+            Text('ADDRESS: ${state.currentAddress ?? ""}'),
+          ],
+        ),
+      );
+    });
   }
 }
