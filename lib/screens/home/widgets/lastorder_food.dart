@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:grabclone/api/api_provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import '../../../models/Shop.dart';
 import '../components/shop_card.dart';
 
-class LastOrderFoodContent extends StatelessWidget {
-  const LastOrderFoodContent({
-    Key? key,
-  }) : super(key: key);
+class LastOrderFoodContent extends StatefulWidget {
+  const LastOrderFoodContent({super.key});
+
+  @override
+  State<LastOrderFoodContent> createState() => _LastOrderFoodContent();
+}
+
+class _LastOrderFoodContent extends State<LastOrderFoodContent> {
+  late Future<List<ShopFood>> futureShopFood;
+
+  @override
+  void initState() {
+    super.initState();
+    futureShopFood = fetchLastOrderFood();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +58,58 @@ class LastOrderFoodContent extends StatelessWidget {
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                          children: List.generate(
-                              recent_shop_food.length,
-                              (index) => ShopCard(
-                                    imageSrc: recent_shop_food[index].imageSrc,
-                                    shopName: recent_shop_food[index].shopName,
-                                    distance: recent_shop_food[index].distance,
-                                    promotion:
-                                        recent_shop_food[index].promotion,
-                                    press: recent_shop_food[index].press,
-                                  ))))),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    // child: Row(
+                    //   // children: List.generate(
+                    //   //     recent_shop_food.length,
+                    //   //     (index) => ShopCard(
+                    //   //           imageSrc: recent_shop_food[index].imageSrc,
+                    //   //           shopName: recent_shop_food[index].shopName,
+                    //   //           distance: recent_shop_food[index].distance,
+                    //   //           promotion:
+                    //   //               recent_shop_food[index].promotion,
+                    //   //           press: recent_shop_food[index].press,
+                    //   //         ))
+                    // )
+                    child: FutureBuilder<List<ShopFood>>(
+                      future: futureShopFood,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          List<ShopFood> shop = snapshot.data!;
+                          print(shop);
+                          return Row(
+                              children: List.generate(
+                                  shop.length,
+                                  (index) => ShopCard(
+                                        imageSrc: shop[index].imageSrc,
+                                        shopName: shop[index].shopName,
+                                        distance: shop[index].distance,
+                                        promotion: shop[index].promotion,
+                                        press: shop[index].press,
+                                      )));
+                        }
+                        return CircularProgressIndicator();
+                      },
+                    ),
+                  )),
               const SizedBox(
                 height: 30,
               ),
             ]));
+  }
+}
+
+Future<List<ShopFood>> fetchLastOrderFood() async {
+  final ApiProvider apiProvider = ApiProvider();
+
+  final http.Response res = await apiProvider.getLastFoodOrder();
+  if (res.statusCode == 200) {
+    var jsonDecode = utf8.decode(res.bodyBytes);
+    List<dynamic> responseJson = json.decode(jsonDecode);
+    return responseJson.map((m) => new ShopFood.fromJson(m)).toList();
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
   }
 }

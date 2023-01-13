@@ -4,12 +4,20 @@ class ShopFood {
   // ignore: prefer_typing_uninitialized_variables
   final String? promotion;
 
-  ShopFood(
+  const ShopFood(
       {required this.imageSrc,
       required this.shopName,
       required this.distance,
       required this.press,
       this.promotion});
+
+  factory ShopFood.fromJson(Map<String, dynamic> json) {
+    return ShopFood(
+        imageSrc: json['profileImg'],
+        shopName: json['name'],
+        distance: '4.0',
+        press: () {});
+  }
 }
 
 List<ShopFood> recent_shop_food = [
