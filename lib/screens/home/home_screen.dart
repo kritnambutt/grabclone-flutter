@@ -12,6 +12,7 @@ import 'widgets/food_order_morning.dart';
 import 'widgets/foodshop_may_like.dart';
 import 'widgets/header.dart';
 import 'widgets/lastorder_food.dart';
+import 'widgets/location_detect.dart';
 import 'widgets/mission_achieve_reward.dart';
 import 'widgets/other_services.dart';
 import 'widgets/promotion_may_interest.dart';
@@ -39,6 +40,7 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const <Widget>[
                 HeaderContent(),
+                LocationDetect(),
                 SizedBox(
                   height: 15,
                 ),
