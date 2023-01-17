@@ -8,7 +8,7 @@ var options = BaseOptions(
   receiveTimeout: 3000,
 );
 
-Dio dio = Dio(options);
+final Dio dio = Dio(options);
 
 class ApiProvider {
   ApiProvider();

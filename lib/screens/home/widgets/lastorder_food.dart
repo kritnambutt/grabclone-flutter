@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grabclone/api/api_provider.dart';
 import 'package:dio/dio.dart';
+import 'package:grabclone/cubit/last_order_food/last_order_food_cubit.dart';
+import 'package:grabclone/cubit/last_order_food/last_order_food_state.dart';
 
 import '../../../models/Shop.dart';
 import '../components/shop_card.dart';
@@ -19,7 +22,9 @@ class _LastOrderFoodContent extends State<LastOrderFoodContent> {
   @override
   void initState() {
     super.initState();
-    futureShopFood = fetchLastOrderFood();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      context.read<LastOrderFoodCubit>()..getLastOrderFood();
+    });
   }
 
   @override
@@ -58,25 +63,33 @@ class _LastOrderFoodContent extends State<LastOrderFoodContent> {
                   scrollDirection: Axis.horizontal,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: FutureBuilder<List<ShopFood>>(
-                      future: futureShopFood,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          List<ShopFood> shop = snapshot.data!;
-                          print(shop);
+                    child: BlocBuilder<LastOrderFoodCubit, LastOrderFoodState>(
+                      builder: ((context, state) {
+                        if (state is LoadingLastOrderFood) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (state is ErrorLastOrderFood) {
+                          return Center(
+                            child: Icon(Icons.close),
+                          );
+                        } else if (state is LoadedSuccessLastOrderFood) {
+                          final listData = state.listData;
+
                           return Row(
                               children: List.generate(
-                                  shop.length,
+                                  listData.length,
                                   (index) => ShopCard(
-                                        imageSrc: shop[index].imageSrc,
-                                        shopName: shop[index].shopName,
-                                        distance: shop[index].distance,
-                                        promotion: shop[index].promotion,
-                                        press: shop[index].press,
+                                        imageSrc: listData[index].imageSrc,
+                                        shopName: listData[index].shopName,
+                                        distance: listData[index].distance,
+                                        promotion: listData[index].promotion,
+                                        press: listData[index].press,
                                       )));
+                        } else {
+                          return Container();
                         }
-                        return CircularProgressIndicator();
-                      },
+                      }),
                     ),
                   )),
               const SizedBox(

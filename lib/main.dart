@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:grabclone/cubit/global_cubit.dart';
+import 'package:grabclone/cubit/last_order_food/last_order_food_cubit.dart';
 import 'package:grabclone/screens/splash_screen.dart';
 import 'package:grabclone/constants.dart';
 import 'package:get_it/get_it.dart';
@@ -28,7 +29,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => GlobalCubit())],
+      providers: [
+        BlocProvider(create: (_) => GlobalCubit()),
+        BlocProvider(create: (_) => LastOrderFoodCubit())
+      ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
