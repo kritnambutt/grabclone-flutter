@@ -36,7 +36,7 @@ class ShopCard extends StatelessWidget {
             color: const Color(0xFFFFF4EA),
             borderRadius: BorderRadius.circular(3)),
         child: Text(
-          promotion,
+          promotion[0],
           overflow: TextOverflow.ellipsis,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
               fontFamily: 'Prompt',
