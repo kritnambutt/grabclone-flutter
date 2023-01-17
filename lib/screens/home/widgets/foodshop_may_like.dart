@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:grabclone/cubit/foodshop_may_like/foodshop_may_like_cubit.dart';
+import 'package:grabclone/cubit/foodshop_may_like/foodshop_may_like_state.dart';
 
-import '../../../models/Shop.dart';
 import '../components/shop_card.dart';
 
-class FoodShopMayBeYouLikeContent extends StatelessWidget {
-  const FoodShopMayBeYouLikeContent({
-    Key? key,
-  }) : super(key: key);
+class FoodShopMayBeYouLikeContent extends StatefulWidget {
+  const FoodShopMayBeYouLikeContent({super.key});
+
+  @override
+  State<FoodShopMayBeYouLikeContent> createState() =>
+      _FoodShopMayBeYouLikeContent();
+}
+
+class _FoodShopMayBeYouLikeContent extends State<FoodShopMayBeYouLikeContent> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      context.read<FoodShopMayLikeCubit>()..getFoodShopMayLike();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    const double widthCard = 130;
-
     return GestureDetector(
         onTap: () {},
         child: Column(
@@ -46,19 +58,37 @@ class FoodShopMayBeYouLikeContent extends StatelessWidget {
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                          children: List.generate(
-                              recent_shop_food.length,
-                              (index) => ShopCard(
-                                    widthCard: widthCard,
-                                    imageSrc: recent_shop_food[index].imageSrc,
-                                    shopName: recent_shop_food[index].shopName,
-                                    distance: recent_shop_food[index].distance,
-                                    promotion:
-                                        recent_shop_food[index].promotion,
-                                    press: recent_shop_food[index].press,
-                                  ))))),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        BlocBuilder<FoodShopMayLikeCubit, FoodShopMayLikeState>(
+                      builder: ((context, state) {
+                        if (state is LoadingFoodShopMayLike) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (state is ErrorFoodShopMayLike) {
+                          return Center(
+                            child: Icon(Icons.close),
+                          );
+                        } else if (state is LoadedSuccessFoodShopMayLike) {
+                          final listData = state.listData;
+
+                          return Row(
+                              children: List.generate(
+                                  listData.length,
+                                  (index) => ShopCard(
+                                        imageSrc: listData[index].imageSrc,
+                                        shopName: listData[index].shopName,
+                                        distance: listData[index].distance,
+                                        promotions: listData[index].promotions,
+                                        press: listData[index].press,
+                                      )));
+                        } else {
+                          return Container();
+                        }
+                      }),
+                    ),
+                  )),
               const SizedBox(
                 height: 30,
               ),

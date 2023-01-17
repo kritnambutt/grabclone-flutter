@@ -6,7 +6,8 @@ class ShopCard extends StatelessWidget {
     required this.imageSrc,
     required this.shopName,
     required this.distance,
-    this.promotion,
+    this.promotions,
+    this.showPromotions = true,
     required this.press,
     this.widthCard = 100,
     this.heightCard = 100,
@@ -20,7 +21,8 @@ class ShopCard extends StatelessWidget {
   final double heightCard;
   final double maxHeight;
   // ignore: prefer_typing_uninitialized_variables
-  final promotion;
+  final List<dynamic>? promotions;
+  final bool showPromotions;
   final Function press;
 
   void _press() {
@@ -28,7 +30,7 @@ class ShopCard extends StatelessWidget {
   }
 
   Widget showPromotionWidget(BuildContext context) {
-    if (promotion != null) {
+    if ((promotions != null && promotions!.isNotEmpty) && showPromotions) {
       return Container(
         height: 20,
         padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -36,7 +38,7 @@ class ShopCard extends StatelessWidget {
             color: const Color(0xFFFFF4EA),
             borderRadius: BorderRadius.circular(3)),
         child: Text(
-          promotion[0],
+          promotions![0],
           overflow: TextOverflow.ellipsis,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
               fontFamily: 'Prompt',

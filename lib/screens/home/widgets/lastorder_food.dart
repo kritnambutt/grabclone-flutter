@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:grabclone/api/api_provider.dart';
-import 'package:dio/dio.dart';
 import 'package:grabclone/cubit/last_order_food/last_order_food_cubit.dart';
 import 'package:grabclone/cubit/last_order_food/last_order_food_state.dart';
 
-import '../../../models/Shop.dart';
 import '../components/shop_card.dart';
 
 class LastOrderFoodContent extends StatefulWidget {
@@ -17,8 +14,6 @@ class LastOrderFoodContent extends StatefulWidget {
 }
 
 class _LastOrderFoodContent extends State<LastOrderFoodContent> {
-  late Future<List<ShopFood>> futureShopFood;
-
   @override
   void initState() {
     super.initState();
@@ -83,8 +78,9 @@ class _LastOrderFoodContent extends State<LastOrderFoodContent> {
                                         imageSrc: listData[index].imageSrc,
                                         shopName: listData[index].shopName,
                                         distance: listData[index].distance,
-                                        promotion: listData[index].promotion,
+                                        promotions: listData[index].promotions,
                                         press: listData[index].press,
+                                        showPromotions: false,
                                       )));
                         } else {
                           return Container();
@@ -96,19 +92,5 @@ class _LastOrderFoodContent extends State<LastOrderFoodContent> {
                 height: 0,
               ),
             ]));
-  }
-}
-
-Future<List<ShopFood>> fetchLastOrderFood() async {
-  final ApiProvider apiProvider = ApiProvider();
-
-  final Response res = await apiProvider.getLastFoodOrder();
-  if (res.statusCode == 200) {
-    List<dynamic> responseJson = res.data;
-    return responseJson.map((m) => new ShopFood.fromJson(m)).toList();
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
   }
 }

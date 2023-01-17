@@ -55,8 +55,8 @@ class FoodOrderMorningContent extends StatelessWidget {
                                     imageSrc: recent_shop_food[index].imageSrc,
                                     shopName: recent_shop_food[index].shopName,
                                     distance: recent_shop_food[index].distance,
-                                    promotion:
-                                        recent_shop_food[index].promotion,
+                                    promotions:
+                                        recent_shop_food[index].promotions,
                                     press: recent_shop_food[index].press,
                                   ))))),
               const SizedBox(
