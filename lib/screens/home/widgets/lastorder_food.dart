@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grabclone/api/api_provider.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:dio/dio.dart';
 
 import '../../../models/Shop.dart';
 import '../components/shop_card.dart';
@@ -59,18 +58,6 @@ class _LastOrderFoodContent extends State<LastOrderFoodContent> {
                   scrollDirection: Axis.horizontal,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    // child: Row(
-                    //   // children: List.generate(
-                    //   //     recent_shop_food.length,
-                    //   //     (index) => ShopCard(
-                    //   //           imageSrc: recent_shop_food[index].imageSrc,
-                    //   //           shopName: recent_shop_food[index].shopName,
-                    //   //           distance: recent_shop_food[index].distance,
-                    //   //           promotion:
-                    //   //               recent_shop_food[index].promotion,
-                    //   //           press: recent_shop_food[index].press,
-                    //   //         ))
-                    // )
                     child: FutureBuilder<List<ShopFood>>(
                       future: futureShopFood,
                       builder: (context, snapshot) {
@@ -93,7 +80,7 @@ class _LastOrderFoodContent extends State<LastOrderFoodContent> {
                     ),
                   )),
               const SizedBox(
-                height: 30,
+                height: 0,
               ),
             ]));
   }
@@ -102,10 +89,9 @@ class _LastOrderFoodContent extends State<LastOrderFoodContent> {
 Future<List<ShopFood>> fetchLastOrderFood() async {
   final ApiProvider apiProvider = ApiProvider();
 
-  final http.Response res = await apiProvider.getLastFoodOrder();
+  final Response res = await apiProvider.getLastFoodOrder();
   if (res.statusCode == 200) {
-    var jsonDecode = utf8.decode(res.bodyBytes);
-    List<dynamic> responseJson = json.decode(jsonDecode);
+    List<dynamic> responseJson = res.data;
     return responseJson.map((m) => new ShopFood.fromJson(m)).toList();
   } else {
     // If the server did not return a 200 OK response,

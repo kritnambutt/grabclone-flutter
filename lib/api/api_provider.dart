@@ -1,16 +1,22 @@
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+var options = BaseOptions(
+  baseUrl: '${dotenv.get("HOST_URL")}/api',
+  headers: {'Content-Type': 'application/json; charset=utf-8'},
+  connectTimeout: 5000,
+  receiveTimeout: 3000,
+);
+
+Dio dio = Dio(options);
 
 class ApiProvider {
   ApiProvider();
 
-  String enPoint = 'http://localhost:8080';
+  Future<Response> getLastFoodOrder() async {
+    final url = '/shop_food/last-order-food';
 
-  Future<http.Response> getLastFoodOrder() async {
-    final url = Uri.parse('$enPoint/api/shop_food');
-    Map<String, String> header = {
-      'Content-Type': 'application/json; charset=utf-8'
-    };
-
-    return await http.get(url, headers: header);
+    Response response = await dio.request(url, options: Options(method: 'GET'));
+    return response;
   }
 }
