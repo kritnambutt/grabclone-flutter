@@ -22,7 +22,6 @@ class FoodOrderMorningCubit extends Cubit<FoodOrderMorningState> {
       // emit loaded success
       emit(LoadedSuccessFoodOrderMorning(result));
     } catch (e) {
-      print("call get last order food: " + e.toString());
       // emit loaded error
       emit(ErrorFoodOrderMorning(e.toString()));
     }

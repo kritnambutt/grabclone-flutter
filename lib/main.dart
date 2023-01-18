@@ -5,6 +5,7 @@ import 'package:grabclone/cubit/food_order_morning/food_order_morning_cubit.dart
 import 'package:grabclone/cubit/foodshop_may_like/foodshop_may_like_cubit.dart';
 import 'package:grabclone/cubit/global_cubit.dart';
 import 'package:grabclone/cubit/last_order_food/last_order_food_cubit.dart';
+import 'package:grabclone/cubit/menu_match_for_you/menu_match_for_you_cubit.dart';
 import 'package:grabclone/screens/splash_screen.dart';
 import 'package:grabclone/constants.dart';
 import 'package:get_it/get_it.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => GlobalCubit()),
         BlocProvider(create: (_) => LastOrderFoodCubit()),
         BlocProvider(create: (_) => FoodShopMayLikeCubit()),
-        BlocProvider(create: (_) => FoodOrderMorningCubit())
+        BlocProvider(create: (_) => FoodOrderMorningCubit()),
+        BlocProvider(create: (_) => MenuMatchForYouCubit()),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

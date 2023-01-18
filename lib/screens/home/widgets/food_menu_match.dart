@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:grabclone/cubit/menu_match_for_you/menu_match_for_you_cubit.dart';
+import 'package:grabclone/cubit/menu_match_for_you/menu_match_for_you_state.dart';
 
-import '../../../models/Food.dart';
 import '../components/foodshop_card.dart';
 
-class FoodMenuMatchWithYouContent extends StatelessWidget {
-  const FoodMenuMatchWithYouContent({
-    Key? key,
-  }) : super(key: key);
+class FoodMenuMatchWithYouContent extends StatefulWidget {
+  const FoodMenuMatchWithYouContent({super.key});
+
+  @override
+  State<FoodMenuMatchWithYouContent> createState() =>
+      _FoodMenuMatchWithYouContent();
+}
+
+class _FoodMenuMatchWithYouContent extends State<FoodMenuMatchWithYouContent> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      context.read<MenuMatchForYouCubit>()..getMenuMathForYou();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,22 +60,39 @@ class FoodMenuMatchWithYouContent extends StatelessWidget {
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                          children: List.generate(
-                              menu_match_with_you_shop_food.length, (index) {
-                        var dataIndex = menu_match_with_you_shop_food[index];
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        BlocBuilder<MenuMatchForYouCubit, MenuMatchForYouState>(
+                      builder: ((context, state) {
+                        if (state is LoadingMenuMatchForYou) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (state is ErrorMenuMatchForYou) {
+                          return Center(
+                            child: Icon(Icons.close),
+                          );
+                        } else if (state is LoadedSuccessMenuMatchForYou) {
+                          final listData = state.listData;
 
-                        return FoodShopCard(
-                          widthCard: widthCard,
-                          imageSrc: dataIndex.imageSrc,
-                          menuName: dataIndex.menuName,
-                          shopName: dataIndex.shopName,
-                          price: dataIndex.price,
-                          promotion: dataIndex.promotion,
-                          press: dataIndex.press,
-                        );
-                      })))),
+                          return Row(
+                              children: List.generate(
+                                  listData.length,
+                                  (index) => FoodShopCard(
+                                        widthCard: widthCard,
+                                        imageSrc: listData[index].imageSrc,
+                                        menuName: listData[index].menuName,
+                                        shopName: listData[index].shop['name'],
+                                        price: listData[index].price,
+                                        promotion: listData[index].promotion,
+                                        press: listData[index].press,
+                                      )));
+                        } else {
+                          return Container();
+                        }
+                      }),
+                    ),
+                  )),
               const SizedBox(
                 height: 30,
               ),

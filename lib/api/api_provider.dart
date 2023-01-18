@@ -33,4 +33,11 @@ class ApiProvider {
     Response response = await dio.request(url, options: Options(method: 'GET'));
     return response;
   }
+
+  Future<Response> getMenuMatchForYou() async {
+    final url = '/food_menu/match-for-you';
+
+    Response response = await dio.request(url, options: Options(method: 'GET'));
+    return response;
+  }
 }

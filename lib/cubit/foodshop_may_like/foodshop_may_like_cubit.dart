@@ -22,7 +22,6 @@ class FoodShopMayLikeCubit extends Cubit<FoodShopMayLikeState> {
       // emit loaded success
       emit(LoadedSuccessFoodShopMayLike(result));
     } catch (e) {
-      print("call get last order food: " + e.toString());
       // emit loaded error
       emit(ErrorFoodShopMayLike(e.toString()));
     }

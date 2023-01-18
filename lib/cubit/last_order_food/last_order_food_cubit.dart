@@ -23,7 +23,6 @@ class LastOrderFoodCubit extends Cubit<LastOrderFoodState> {
       // emit loaded success
       emit(LoadedSuccessLastOrderFood(result));
     } catch (e) {
-      print("call get last order food: " + e.toString());
       // emit loaded error
       emit(ErrorLastOrderFood(e.toString()));
     }
