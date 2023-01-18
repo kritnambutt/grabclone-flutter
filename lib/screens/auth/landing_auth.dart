@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grabclone/constants.dart';
-import 'package:grabclone/screens/auth/login_screen.dart';
 
 class LandingAuthScreen extends StatelessWidget {
   const LandingAuthScreen({super.key});
@@ -86,10 +86,7 @@ class ButtonLogin extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const LoginScreen();
-                      }));
+                      GoRouter.of(context).go('/login');
                     },
                     child: Padding(
                         padding: const EdgeInsets.all(15),

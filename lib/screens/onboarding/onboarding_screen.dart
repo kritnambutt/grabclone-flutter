@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grabclone/screens/auth/landing_auth.dart';
+import 'package:go_router/go_router.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -75,10 +75,7 @@ class _OnboardingScreenState extends State<OnBoardingScreen> {
                       children: <Widget>[
                           TextButton(
                               onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return const LandingAuthScreen();
-                                }));
+                                GoRouter.of(context).go('/landing_auth');
                               },
                               child: Text('Skip',
                                   style: Theme.of(context)
@@ -143,10 +140,7 @@ class GetStartedButton extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const LandingAuthScreen();
-                      }));
+                      GoRouter.of(context).go('/landing_auth');
                     },
                     child: Padding(
                         padding: const EdgeInsets.all(16),

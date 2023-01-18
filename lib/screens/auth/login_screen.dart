@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grabclone/components/horizontal_line.dart';
-import 'package:grabclone/screens/home/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -12,9 +12,7 @@ class LoginScreen extends StatelessWidget {
     double statusBarHeight = MediaQuery.of(context).padding.top;
 
     void _goToHomeScreen() {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const HomeScreen();
-      }));
+      GoRouter.of(context).go('/home');
     }
 
     return Scaffold(
