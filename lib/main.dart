@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:grabclone/cubit/food_order_morning/food_order_morning_cubit.dart';
 import 'package:grabclone/cubit/foodshop_may_like/foodshop_may_like_cubit.dart';
 import 'package:grabclone/cubit/global_cubit.dart';
 import 'package:grabclone/cubit/last_order_food/last_order_food_cubit.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => GlobalCubit()),
         BlocProvider(create: (_) => LastOrderFoodCubit()),
         BlocProvider(create: (_) => FoodShopMayLikeCubit()),
+        BlocProvider(create: (_) => FoodOrderMorningCubit())
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

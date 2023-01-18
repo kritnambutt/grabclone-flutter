@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:grabclone/cubit/food_order_morning/food_order_morning_cubit.dart';
+import 'package:grabclone/cubit/food_order_morning/food_order_morning_state.dart';
 
-import '../../../models/Shop.dart';
 import '../components/shop_card.dart';
 
-class FoodOrderMorningContent extends StatelessWidget {
-  const FoodOrderMorningContent({
-    Key? key,
-  }) : super(key: key);
+class FoodOrderMorningContent extends StatefulWidget {
+  const FoodOrderMorningContent({super.key});
+
+  @override
+  State<FoodOrderMorningContent> createState() => _FoodOrderMorningContent();
+}
+
+class _FoodOrderMorningContent extends State<FoodOrderMorningContent> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      context.read<FoodOrderMorningCubit>()..getFoodOrderMorning();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,53 +28,71 @@ class FoodOrderMorningContent extends StatelessWidget {
 
     return GestureDetector(
         onTap: () {},
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  children: <Widget>[
-                    Text(
-                      'สั่งมื้อเข้าจาก',
-                      style: Theme.of(context).textTheme.headline6?.copyWith(
-                          fontFamily: 'Prompt', color: const Color(0xFF3D3D3D)),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SvgPicture.asset(
-                      'assets/icons/right-arrow-fill.svg',
-                      width: 20,
-                      height: 20,
-                      color: const Color(0x66808080),
-                      fit: BoxFit.scaleDown,
-                    )
-                  ],
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
+            Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  'สั่งมื้อเช้าจาก',
+                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                      fontFamily: 'Prompt', color: const Color(0xFF3D3D3D)),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
+                const SizedBox(
+                  width: 10,
+                ),
+                SvgPicture.asset(
+                  'assets/icons/right-arrow-fill.svg',
+                  width: 20,
+                  height: 20,
+                  color: const Color(0x66808080),
+                  fit: BoxFit.scaleDown,
+                )
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child:
+                    BlocBuilder<FoodOrderMorningCubit, FoodOrderMorningState>(
+                  builder: ((context, state) {
+                    if (state is LoadingFoodOrderMorning) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (state is ErrorFoodOrderMorning) {
+                      return Center(
+                        child: Icon(Icons.close),
+                      );
+                    } else if (state is LoadedSuccessFoodOrderMorning) {
+                      final listData = state.listData;
+
+                      return Row(
                           children: List.generate(
-                              recent_shop_food.length,
+                              listData.length,
                               (index) => ShopCard(
                                     widthCard: widthCard,
-                                    imageSrc: recent_shop_food[index].imageSrc,
-                                    shopName: recent_shop_food[index].shopName,
-                                    distance: recent_shop_food[index].distance,
-                                    promotions:
-                                        recent_shop_food[index].promotions,
-                                    press: recent_shop_food[index].press,
-                                  ))))),
-              const SizedBox(
-                height: 30,
-              ),
-            ]));
+                                    imageSrc: listData[index].imageSrc,
+                                    shopName: listData[index].shopName,
+                                    distance: listData[index].distance,
+                                    promotions: listData[index].promotions,
+                                    press: listData[index].press,
+                                  )));
+                    } else {
+                      return Container();
+                    }
+                  }),
+                ),
+              )),
+          const SizedBox(
+            height: 30,
+          ),
+        ]));
   }
 }

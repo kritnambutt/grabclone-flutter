@@ -25,6 +25,8 @@ class _FoodShopMayBeYouLikeContent extends State<FoodShopMayBeYouLikeContent> {
 
   @override
   Widget build(BuildContext context) {
+    const double widthCard = 130;
+
     return GestureDetector(
         onTap: () {},
         child: Column(
@@ -77,6 +79,7 @@ class _FoodShopMayBeYouLikeContent extends State<FoodShopMayBeYouLikeContent> {
                               children: List.generate(
                                   listData.length,
                                   (index) => ShopCard(
+                                        widthCard: widthCard,
                                         imageSrc: listData[index].imageSrc,
                                         shopName: listData[index].shopName,
                                         distance: listData[index].distance,

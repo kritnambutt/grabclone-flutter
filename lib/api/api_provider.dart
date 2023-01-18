@@ -26,4 +26,11 @@ class ApiProvider {
     Response response = await dio.request(url, options: Options(method: 'GET'));
     return response;
   }
+
+  Future<Response> getFoodOrderMorning() async {
+    final url = '/shop_food/food-order-morning';
+
+    Response response = await dio.request(url, options: Options(method: 'GET'));
+    return response;
+  }
 }
