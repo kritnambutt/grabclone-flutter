@@ -23,12 +23,17 @@ Future<void> main() async {
   await dotenv.load();
   setupServiceLocation();
 
-  runApp(const MyApp());
+  runApp(const GrabCloneApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class GrabCloneApp extends StatefulWidget {
+  const GrabCloneApp({super.key});
 
+  @override
+  State<GrabCloneApp> createState() => _GrabCloneAppState();
+}
+
+class _GrabCloneAppState extends State<GrabCloneApp> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -53,50 +58,6 @@ class MyApp extends StatelessWidget {
                 elevation: 0),
           ),
           home: const SplashScreen()),
-    );
-  }
-}
-
-class _WidgetBottomNavigationBar extends StatefulWidget {
-  const _WidgetBottomNavigationBar({super.key});
-
-  @override
-  State<_WidgetBottomNavigationBar> createState() =>
-      WidgetBottomNavigationBarState();
-}
-
-class WidgetBottomNavigationBarState extends State<_WidgetBottomNavigationBar> {
-  int _currentIndex = 0;
-  List<Widget> body = const [
-    Icon(Icons.home),
-    Icon(Icons.menu),
-    Icon(Icons.person)
-  ];
-
-  void _onItemTapped(int newIndex) {
-    setState(() {
-      _currentIndex = newIndex;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter App'),
-      ),
-      body: Center(
-        child: body[_currentIndex],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
-          BottomNavigationBarItem(label: 'Menu', icon: Icon(Icons.menu)),
-          BottomNavigationBarItem(label: 'Profile', icon: Icon(Icons.person)),
-        ],
-      ),
     );
   }
 }
