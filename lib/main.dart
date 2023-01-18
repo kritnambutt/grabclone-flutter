@@ -7,11 +7,7 @@ import 'package:grabclone/cubit/foodshop_may_like/foodshop_may_like_cubit.dart';
 import 'package:grabclone/cubit/global_cubit.dart';
 import 'package:grabclone/cubit/last_order_food/last_order_food_cubit.dart';
 import 'package:grabclone/cubit/menu_match_for_you/menu_match_for_you_cubit.dart';
-import 'package:grabclone/screens/auth/landing_auth.dart';
-import 'package:grabclone/screens/auth/login_screen.dart';
-import 'package:grabclone/screens/home/home_screen.dart';
-import 'package:grabclone/screens/onboarding/onboarding_screen.dart';
-import 'package:grabclone/screens/splash_screen.dart';
+import 'package:grabclone/routes/routes_lib.dart';
 import 'package:grabclone/constants.dart';
 import 'package:get_it/get_it.dart';
 
@@ -39,6 +35,8 @@ class GrabCloneApp extends StatefulWidget {
 }
 
 class _GrabCloneAppState extends State<GrabCloneApp> {
+  late GoRouter _router = AppRoutes().init().router;
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -67,29 +65,4 @@ class _GrabCloneAppState extends State<GrabCloneApp> {
       ),
     );
   }
-
-  final GoRouter _router = GoRouter(
-    routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => SplashScreen(),
-      ),
-      GoRoute(
-        path: '/onboarding',
-        builder: (context, state) => OnBoardingScreen(),
-      ),
-      GoRoute(
-        path: '/landing_auth',
-        builder: (context, state) => LandingAuthScreen(),
-      ),
-      GoRoute(
-        path: '/login',
-        builder: (context, state) => LoginScreen(),
-      ),
-      GoRoute(
-        path: '/home',
-        builder: (context, state) => HomeScreen(),
-      ),
-    ],
-  );
 }

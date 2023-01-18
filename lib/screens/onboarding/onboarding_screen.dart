@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:grabclone/routes/routes_lib.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -75,7 +76,8 @@ class _OnboardingScreenState extends State<OnBoardingScreen> {
                       children: <Widget>[
                           TextButton(
                               onPressed: () {
-                                GoRouter.of(context).go('/landing_auth');
+                                GoRouter.of(context)
+                                    .goNamed(RouteName.landingAuthScreen.name);
                               },
                               child: Text('Skip',
                                   style: Theme.of(context)
@@ -140,7 +142,8 @@ class GetStartedButton extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                     onTap: () {
-                      GoRouter.of(context).go('/landing_auth');
+                      GoRouter.of(context)
+                          .goNamed(RouteName.landingAuthScreen.name);
                     },
                     child: Padding(
                         padding: const EdgeInsets.all(16),

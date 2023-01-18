@@ -3,6 +3,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:async';
 
+import 'package:grabclone/routes/routes_lib.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -15,8 +17,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 5))
-        .then((value) => {GoRouter.of(context).go('/onboarding')});
+    Future.delayed(const Duration(seconds: 5)).then((value) =>
+        GoRouter.of(context).goNamed(RouteName.onboardingScreen.name));
   }
 
   @override
