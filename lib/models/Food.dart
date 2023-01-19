@@ -1,3 +1,5 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class MenuFoodShop {
   final String imageSrc, menuName;
   final Map<String, dynamic> shop;
@@ -16,7 +18,7 @@ class MenuFoodShop {
 
   factory MenuFoodShop.fromJson(Map<String, dynamic> json) {
     return MenuFoodShop(
-      imageSrc: json['img'],
+      imageSrc: dotenv.get('HOST_URL') + json['img'],
       menuName: json['name'],
       shop: json['shop'],
       price: json['price'],

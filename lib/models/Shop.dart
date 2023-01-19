@@ -1,3 +1,5 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class ShopFood {
   final String imageSrc, shopName, distance;
   final Function press;
@@ -13,7 +15,7 @@ class ShopFood {
 
   factory ShopFood.fromJson(Map<String, dynamic> json) {
     return ShopFood(
-      imageSrc: json['profileImg'],
+      imageSrc: dotenv.get('HOST_URL') + json['profileImg'],
       shopName: json['name'],
       distance: '4.0',
       promotions: json['promotions'],
