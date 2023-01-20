@@ -73,12 +73,6 @@ class _GrabCloneAppState extends State<GrabCloneApp> {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: L10n.support,
-        localeResolutionCallback: (
-          locale,
-          supportedLocales,
-        ) {
-          return locale;
-        },
         locale: _locale,
         // home: const SplashScreen()
       ),
