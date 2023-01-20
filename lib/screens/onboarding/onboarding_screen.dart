@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grabclone/routes/routes_lib.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -151,7 +152,9 @@ class GetStartedButton extends StatelessWidget {
                           height: 50,
                           width: size.width,
                           child: Text(
-                            'Get Started',
+                            // 'Get Started',
+                            AppLocalizations.of(context)?.helloWorld ??
+                                'Get Started',
                             textAlign: TextAlign.center,
                             style: Theme.of(context)
                                 .textTheme
