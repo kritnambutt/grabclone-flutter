@@ -8,6 +8,7 @@ import 'package:grabclone/cubit/foodshop_may_like/foodshop_may_like_cubit.dart';
 import 'package:grabclone/cubit/global_cubit.dart';
 import 'package:grabclone/cubit/last_order_food/last_order_food_cubit.dart';
 import 'package:grabclone/cubit/menu_match_for_you/menu_match_for_you_cubit.dart';
+import 'package:grabclone/l10n/support_locale.dart';
 import 'package:grabclone/routes/routes_lib.dart';
 import 'package:grabclone/constants.dart';
 import 'package:get_it/get_it.dart';
@@ -16,6 +17,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'services/location_service.dart';
 
 GetIt ourGetIt = GetIt.instance;
+Locale initialLocale = Locale('en');
 
 setupServiceLocation() {
   ourGetIt.registerLazySingleton<LocationServiceClass>(() => LocationService());
@@ -38,6 +40,7 @@ class GrabCloneApp extends StatefulWidget {
 
 class _GrabCloneAppState extends State<GrabCloneApp> {
   late GoRouter _router = AppRoutes().init().router;
+  final Locale _locale = initialLocale;
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +72,14 @@ class _GrabCloneAppState extends State<GrabCloneApp> {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales: [
-          Locale('en'), // English
-          Locale('th'), // Thai
-        ],
+        supportedLocales: L10n.support,
+        localeResolutionCallback: (
+          locale,
+          supportedLocales,
+        ) {
+          return locale;
+        },
+        locale: _locale,
         // home: const SplashScreen()
       ),
     );
