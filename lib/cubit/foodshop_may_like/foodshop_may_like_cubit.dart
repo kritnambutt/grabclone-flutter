@@ -1,25 +1,19 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grabclone/api/api_provider.dart';
 import 'package:grabclone/cubit/foodshop_may_like/foodshop_may_like_state.dart';
-import 'package:grabclone/models/Shop.dart';
+import 'package:grabclone/services/food_service.dart';
 
 class FoodShopMayLikeCubit extends Cubit<FoodShopMayLikeState> {
   FoodShopMayLikeCubit() : super(InitFoodShopMayLike()) {}
 
-  final ApiProvider apiProvider = ApiProvider();
+  final FoodService foodService = FoodService();
 
   Future<void> getFoodShopMayLike() async {
     try {
       // turn into loading state
       emit(LoadingFoodShopMayLike());
 
-      // fetch data
-      final Response res = await apiProvider.getFoodShopMayLike();
-      List<dynamic> responseJson = res.data;
-      var result = responseJson.map((m) => new ShopFood.fromJson(m)).toList();
-
-      // emit loaded success
+      // fetch data && emit loaded success
+      final result = await foodService.getFoodShopMayLike();
       emit(LoadedSuccessFoodShopMayLike(result));
     } catch (e) {
       // emit loaded error

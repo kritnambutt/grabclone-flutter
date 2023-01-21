@@ -1,26 +1,19 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grabclone/api/api_provider.dart';
-import 'package:grabclone/models/Shop.dart';
-
-import 'last_order_food_state.dart';
+import 'package:grabclone/cubit/last_order_food/last_order_food_state.dart';
+import 'package:grabclone/services/food_service.dart';
 
 class LastOrderFoodCubit extends Cubit<LastOrderFoodState> {
   LastOrderFoodCubit() : super(InitLastOrderFood()) {}
 
-  final ApiProvider apiProvider = ApiProvider();
+  final FoodService foodService = FoodService();
 
   Future<void> getLastOrderFood() async {
     try {
       // turn into loading state
       emit(LoadingLastOrderFood());
 
-      // fetch data
-      final Response res = await apiProvider.getLastFoodOrder();
-      List<dynamic> responseJson = res.data;
-      var result = responseJson.map((m) => new ShopFood.fromJson(m)).toList();
-
-      // emit loaded success
+      // fetch data && emit loaded success
+      final result = await foodService.getLastFoodOrder();
       emit(LoadedSuccessLastOrderFood(result));
     } catch (e) {
       // emit loaded error
