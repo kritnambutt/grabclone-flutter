@@ -1,18 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grabclone/cubit/food_order_morning/food_order_morning_cubit.dart';
 import 'package:grabclone/cubit/foodshop_may_like/foodshop_may_like_cubit.dart';
 import 'package:grabclone/cubit/global_cubit.dart';
 import 'package:grabclone/cubit/last_order_food/last_order_food_cubit.dart';
 import 'package:grabclone/cubit/menu_match_for_you/menu_match_for_you_cubit.dart';
-import 'package:grabclone/l10n/support_locale.dart';
+import 'package:grabclone/locales/support_locale.dart';
 import 'package:grabclone/routes/routes_lib.dart';
 import 'package:grabclone/constants.dart';
 import 'package:get_it/get_it.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'services/location_service.dart';
 
@@ -25,10 +24,15 @@ setupServiceLocation() {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await dotenv.load();
   setupServiceLocation();
 
-  runApp(const GrabCloneApp());
+  runApp(EasyLocalization(
+      supportedLocales: SupportLocale.support,
+      path: 'assets/translations',
+      fallbackLocale: Locale('en'),
+      child: GrabCloneApp()));
 }
 
 class GrabCloneApp extends StatefulWidget {
@@ -66,15 +70,9 @@ class _GrabCloneAppState extends State<GrabCloneApp> {
               foregroundColor: Colors.black,
               elevation: 0),
         ),
-        localizationsDelegates: [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: L10n.support,
-        locale: _locale,
-        // home: const SplashScreen()
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
       ),
     );
   }

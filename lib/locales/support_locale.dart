@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-class L10n {
+class SupportLocale {
   static const List<Locale> support = [Locale("en"), Locale("th")];
 }

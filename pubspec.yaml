@@ -54,6 +54,7 @@ dependencies:
   go_router: ^6.0.1
   flutter_launcher_icons: ^0.11.0
   shared_preferences: ^2.0.17
+  easy_localization: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -85,9 +86,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - .env
-    - lib/l10n/
     - assets/images/
     - assets/icons/
+    - assets/translations/
     - assets/icons/category_services/
     - assets/icons/other_services/
     - assets/icons/menu/
