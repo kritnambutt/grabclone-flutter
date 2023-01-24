@@ -1,3 +1,18 @@
 {
-  "onboarding_screen.getstarted_text_button": "Get Started"
+  "onboarding_screen.getstarted_text_button": "Get Started",
+  "onboarding_screen.data_1.title": "Choose Product",
+  "onboarding_screen.data_1.description": "A product is the item offered for sale. A product can be a service or an item. It can be physical or in virtual or cyber form",
+  "onboarding_screen.data_2.title": "Make Payment",
+  "onboarding_screen.data_2.description": "Payment is the transfer of money services in exchange product or Payments typically made terms agreed",
+  "onboarding_screen.data_3.title": "Get Your Order",
+  "onboarding_screen.data_3.description": "Business or commerce an order is a stated intention either spoken to engage in a commercial transaction specific products",
+  "landingauth_screen.header_text": "แอปฯ ที่ตอบทุกโจทย์ในชีวิตประจำวัน \nของคุณ",
+  "landingauth_screen.login_button_text": "Sign In",
+  "landingauth_screen.signup_button_text": "ยังไม่เคยใช้ Grap? ลงทะเบียนเลย!",
+  "login_screen.header_text": "แอปฯ ที่ตอบทุกโจทย์ในชีวิตประจำวัน \nของคุณ",
+  "login_screen.facebook_auth_button_text": "ดำเนินการต่อด้วย Facebook",
+  "login_screen.google_auth_button_text": "ดำเนินการต่อด้วย Google",
+  "login_screen.appleid_auth_button_text": "ดำเนินการต่อด้วย Apple",
+  "login_screen.divider_line_or_text": "หรือ",
+  "login_screen.telephone_number_button_text": "ดำเนินการต่อด้วยเบอร์โทรศัพท์"
 }

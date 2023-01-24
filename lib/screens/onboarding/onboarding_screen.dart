@@ -237,18 +237,15 @@ class OnboardingModel {
 // ignore: non_constant_identifier_names
 final List<OnboardingModel> onboarding_data = [
   OnboardingModel(
-      title: 'Choose Product',
-      description:
-          'A product is the item offered for sale. A product can be a service or an item. It can be physical or in virtual or cyber form',
+      title: "onboarding_screen.data_1.title".tr(),
+      description: "onboarding_screen.data_1.description".tr(),
       imageLink: 'assets/images/illustrations/onboarding/onboarding-1.png'),
   OnboardingModel(
-      title: 'Make Payment',
-      description:
-          'Payment is the transfer of money services in exchange product or Payments typically made terms agreed',
+      title: "onboarding_screen.data_2.title".tr(),
+      description: "onboarding_screen.data_2.description".tr(),
       imageLink: 'assets/images/illustrations/onboarding/onboarding-1.png'),
   OnboardingModel(
-      title: 'Get Your Order',
-      description:
-          'Business or commerce an order is a stated intention either spoken to engage in a commercial transaction specific products ',
+      title: "onboarding_screen.data_3.title".tr(),
+      description: "onboarding_screen.data_3.description".tr(),
       imageLink: 'assets/images/illustrations/onboarding/onboarding-1.png'),
 ];

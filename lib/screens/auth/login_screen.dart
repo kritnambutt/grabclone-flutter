@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -55,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        'แอปฯ ที่ตอบทุกโจทย์ในชีวิตประจำวัน \nของคุณ',
+                        "login_screen.header_text".tr(),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.headline6?.copyWith(
                             fontFamily: 'Prompt',
@@ -72,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Column(children: <Widget>[
                   ButtonRoundWithIcon(
-                    textButton: 'ดำเนินการต่อด้วย Facebook',
+                    textButton: "login_screen.facebook_auth_button_text".tr(),
                     imageSrc: 'assets/icons/facebook.svg',
                     press: _goToHomeScreen,
                   ),
@@ -80,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                     height: 15,
                   ),
                   ButtonRoundWithIcon(
-                    textButton: 'ดำเนินการต่อด้วย Google',
+                    textButton: "login_screen.google_auth_button_text".tr(),
                     imageSrc: 'assets/icons/google.svg',
                     press: _goToHomeScreen,
                   ),
@@ -88,7 +89,7 @@ class LoginScreen extends StatelessWidget {
                     height: 15,
                   ),
                   ButtonRoundWithIcon(
-                    textButton: 'ดำเนินการต่อด้วย Apple',
+                    textButton: "login_screen.appleid_auth_button_text".tr(),
                     imageSrc: 'assets/icons/apple-logo.svg',
                     press: _goToHomeScreen,
                   ),
@@ -101,7 +102,7 @@ class LoginScreen extends StatelessWidget {
                       const HorizontalLine(
                         width: 120,
                       ),
-                      Text('หรือ',
+                      Text("login_screen.divider_line_or_text".tr(),
                           style: Theme.of(context)
                               .textTheme
                               .headline5
@@ -119,7 +120,8 @@ class LoginScreen extends StatelessWidget {
                     height: 30,
                   ),
                   ButtonRoundWithIcon(
-                    textButton: 'ดำเนินการต่อด้วยเบอร์โทรศัพท์',
+                    textButton:
+                        "login_screen.telephone_number_button_text".tr(),
                     imageSrc: 'assets/icons/phone-call.svg',
                     press: _goToHomeScreen,
                   ),

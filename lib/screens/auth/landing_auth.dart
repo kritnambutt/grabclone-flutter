@@ -1,11 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grabclone/constants.dart';
 import 'package:grabclone/routes/routes_lib.dart';
 
-class LandingAuthScreen extends StatelessWidget {
-  const LandingAuthScreen({super.key});
+class LandingAuthScreen extends StatefulWidget {
+  const LandingAuthScreen({Key? key}) : super(key: key);
 
+  @override
+  State<LandingAuthScreen> createState() => _LandingAuthScreen();
+}
+
+class _LandingAuthScreen extends State<LandingAuthScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -32,7 +38,7 @@ class LandingAuthScreen extends StatelessWidget {
                               height: 20,
                             ),
                             Text(
-                              'แอปฯ ที่ตอบทุกโจทย์ในชีวิตประจำวัน \nของคุณ',
+                              "landingauth_screen.header_text".tr(),
                               textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme
@@ -95,7 +101,7 @@ class ButtonLogin extends StatelessWidget {
                           height: 50,
                           width: size.width,
                           child: Text(
-                            'เข้าสู่ระบบ',
+                            "landingauth_screen.login_button_text".tr(),
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.button?.copyWith(
                                 color: Colors.white, fontFamily: 'Prompt'),
@@ -139,7 +145,7 @@ class SignUpLogin extends StatelessWidget {
                           height: 50,
                           width: size.width,
                           child: Text(
-                            'ยังไม่เคยใช้ Grap? ลงทะเบียนเลย!',
+                            "landingauth_screen.signup_button_text".tr(),
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.button?.copyWith(
                                 color: const Color(0xFF005238),
