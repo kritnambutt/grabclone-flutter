@@ -4,8 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:grabclone/cubit/food_order_morning/food_order_morning_cubit.dart';
 import 'package:grabclone/cubit/food_order_morning/food_order_morning_state.dart';
 
-import '../components/shop_card.dart';
-
 class FoodOrderMorningContent extends StatefulWidget {
   const FoodOrderMorningContent({super.key});
 

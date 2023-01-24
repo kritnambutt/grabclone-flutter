@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../components/summary_card.dart';
+import 'package:grabclone/screens/home/components/summary_card.dart';
 
 class SummaryContent extends StatelessWidget {
   const SummaryContent({

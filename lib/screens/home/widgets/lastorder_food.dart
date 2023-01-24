@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grabclone/cubit/last_order_food/last_order_food_cubit.dart';
 import 'package:grabclone/cubit/last_order_food/last_order_food_state.dart';
-
-import '../components/shop_card.dart';
+import 'package:grabclone/screens/home/components/shop_card.dart';
 
 class LastOrderFoodContent extends StatefulWidget {
   const LastOrderFoodContent({super.key});

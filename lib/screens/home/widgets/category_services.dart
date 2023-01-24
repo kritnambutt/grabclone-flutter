@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grabclone/models/Category.dart';
-
-import '../components/category_service_card.dart';
+import 'package:grabclone/screens/home/components/category_service_card.dart';
 
 class CategoryServices extends StatelessWidget {
   const CategoryServices({

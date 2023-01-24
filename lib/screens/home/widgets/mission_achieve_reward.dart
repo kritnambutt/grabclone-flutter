@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../models/MissionReward.dart';
-import '../components/mission_achieve_reward_card.dart';
+import 'package:grabclone/models/MissionReward.dart';
+import 'package:grabclone/screens/home/components/mission_achieve_reward_card.dart';
 
 class MissionAchieveRewardContent extends StatelessWidget {
   const MissionAchieveRewardContent({

@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grabclone/cubit/menu_match_for_you/menu_match_for_you_cubit.dart';
 import 'package:grabclone/cubit/menu_match_for_you/menu_match_for_you_state.dart';
-
-import '../components/foodshop_card.dart';
+import 'package:grabclone/screens/home/components/foodshop_card.dart';
 
 class FoodMenuMatchWithYouContent extends StatefulWidget {
   const FoodMenuMatchWithYouContent({super.key});

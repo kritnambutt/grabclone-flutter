@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../models/Deal.dart';
-import '../components/deal_card.dart';
+import 'package:grabclone/models/Deal.dart';
+import 'package:grabclone/screens/home/components/deal_card.dart';
 
 class DealFoodContent extends StatelessWidget {
   const DealFoodContent({

@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grabclone/cubit/foodshop_may_like/foodshop_may_like_cubit.dart';
 import 'package:grabclone/cubit/foodshop_may_like/foodshop_may_like_state.dart';
-
-import '../components/shop_card.dart';
+import 'package:grabclone/screens/home/components/shop_card.dart';
 
 class FoodShopMayBeYouLikeContent extends StatefulWidget {
   const FoodShopMayBeYouLikeContent({super.key});
