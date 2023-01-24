@@ -44,8 +44,6 @@ class GrabCloneApp extends StatefulWidget {
 
 class _GrabCloneAppState extends State<GrabCloneApp> {
   late GoRouter _router = AppRoutes().init().router;
-  final Locale _locale = initialLocale;
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
