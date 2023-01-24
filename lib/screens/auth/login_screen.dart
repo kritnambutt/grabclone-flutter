@@ -2,11 +2,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:grabclone/components/horizontal_line.dart';
 import 'package:grabclone/routes/routes_lib.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  Map<String, dynamic>? _userData;
+  AccessToken? _accessToken;
+  bool? _checking = true;
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +25,43 @@ class LoginScreen extends StatelessWidget {
 
     void _goToHomeScreen() {
       GoRouter.of(context).goNamed(RouteName.homeScreen.name);
+    }
+
+    void _login() async {
+      final loginResult = await FacebookAuth.instance.login();
+
+      if (loginResult.status == LoginStatus.success) {
+        _accessToken = loginResult.accessToken;
+        final userInfo = await FacebookAuth.instance.getUserData();
+        _userData = userInfo;
+      } else {
+        print('ResultStatus: ${loginResult.status}');
+        print('Message: ${loginResult.message}');
+      }
+    }
+
+    void _ifUserIsLoggedIn() async {
+      final accessToken = await FacebookAuth.instance.accessToken;
+
+      setState(() {
+        _checking = false;
+      });
+
+      if (accessToken != null) {
+        final userData = await FacebookAuth.instance.getUserData();
+        _accessToken = accessToken;
+        setState(() {
+          _userData = userData;
+        });
+      } else {
+        _login();
+      }
+    }
+
+    void _logOut() async {
+      await FacebookAuth.instance.logOut();
+      _accessToken = null;
+      _userData = null;
     }
 
     return Scaffold(
@@ -75,7 +122,7 @@ class LoginScreen extends StatelessWidget {
                   ButtonRoundWithIcon(
                     textButton: "login_screen.facebook_auth_button_text".tr(),
                     imageSrc: 'assets/icons/facebook.svg',
-                    press: _goToHomeScreen,
+                    press: _ifUserIsLoggedIn,
                   ),
                   const SizedBox(
                     height: 15,

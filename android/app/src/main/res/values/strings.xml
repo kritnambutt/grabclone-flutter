@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Grab Clone</string>
+    <string name="facebook_app_id">1560589797736647</string>
+    <string name="fb_login_protocol_scheme">fb1560589797736647</string>
+    <string name="facebook_client_token">a822fc1a600388b4fec977c927f930be</string>
+</resources>
