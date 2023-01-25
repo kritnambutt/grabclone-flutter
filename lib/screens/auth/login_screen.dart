@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     }
 
-    void _ifUserIsLoggedIn() async {
+    void _checkIfUserIsLoggedIn() async {
       final accessToken = await FacebookAuth.instance.accessToken;
 
       setState(() {
@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ButtonRoundWithIcon(
                     textButton: "login_screen.facebook_auth_button_text".tr(),
                     imageSrc: 'assets/icons/facebook.svg',
-                    press: _ifUserIsLoggedIn,
+                    press: _checkIfUserIsLoggedIn,
                   ),
                   const SizedBox(
                     height: 15,

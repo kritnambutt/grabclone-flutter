@@ -64,12 +64,12 @@
 	<false/>
 	<key>CFBundleURLTypes</key>
 	<array>
-	<dict>
-	<key>CFBundleURLSchemes</key>
-	<array>
-		<string>fb1560589797736647</string>
-	</array>
-	</dict>
+		<dict>
+		<key>CFBundleURLSchemes</key>
+		<array>
+			<string>fb1560589797736647</string>
+		</array>
+		</dict>
 	</array>
 	<key>FacebookAppID</key>
 	<string>1560589797736647</string>
